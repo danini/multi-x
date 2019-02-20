@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{061b006c-3a3e-43bf-8818-7ab2a003557a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Samplers">
+      <UniqueIdentifier>{c0cc1aca-479c-47b2-8f0d-728ab09be416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GCOptimization">
+      <UniqueIdentifier>{66f18d02-a268-478b-ad8e-b1e03ef647ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ModeSeeking">
+      <UniqueIdentifier>{60df7797-6d87-4ebe-8d0c-8df65d13d4ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\models\estimator.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\sampler\sampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\models\model.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\sampler\uniform_sampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\gcoptimization\GCoptimization.h">
+      <Filter>GCOptimization</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\gcoptimization\block.h">
+      <Filter>GCOptimization</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\gcoptimization\energy.h">
+      <Filter>GCOptimization</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\gcoptimization\graph.h">
+      <Filter>GCOptimization</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\gcoptimization\LinkedBlockList.h">
+      <Filter>GCOptimization</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\sampler\napsac_sampler.h">
+      <Filter>Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="moduls\mode_seeking\mean_shift.h">
+      <Filter>ModeSeeking</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisionFrameWork.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\models\fundamental_estimator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\models\homography_estimator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\models\line_estimator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\gcoptimization\GCoptimization.cpp">
+      <Filter>GCOptimization</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\gcoptimization\LinkedBlockList.cpp">
+      <Filter>GCOptimization</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\gcoptimization\graph.cpp">
+      <Filter>GCOptimization</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\gcoptimization\maxflow.cpp">
+      <Filter>GCOptimization</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\mode_seeking\mean_shift.cpp">
+      <Filter>ModeSeeking</Filter>
+    </ClCompile>
+    <ClCompile Include="moduls\models\motion_estimator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
