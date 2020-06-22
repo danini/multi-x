@@ -32,15 +32,15 @@
 #include <algorithm>
 #include <unordered_map>
 
-#include "moduls/models/model.h"
-#include "moduls/models/line_estimator.cpp"
-#include "moduls/models/fundamental_estimator.cpp"
-#include "moduls/models/homography_estimator.cpp"
+#include "model.h"
+#include "line_estimator.cpp"
+#include "fundamental_estimator.cpp"
+#include "homography_estimator.cpp"
 
-#include "moduls/sampler/uniform_sampler.h"
-#include "moduls/mode_seeking/mean_shift.h"
+#include "uniform_sampler.h"
+#include "mean_shift.h"
 
-#include "moduls/gcoptimization/GCoptimization.h"
+#include "GCoptimization.h"
 
 namespace multix
 {

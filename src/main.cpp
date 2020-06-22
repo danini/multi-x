@@ -20,21 +20,20 @@
 //
 // Please contact the author of this library if you have any questions.
 // Author: Daniel Barath (majti89@gmail.com)
-#include "stdafx.h"
-
 #include <map>
 #include <set>
 #include <algorithm>
 #include <cmath>
 
-#include "moduls/models/model.h"
-#include "moduls/models/line_estimator.cpp"
-#include "moduls/models/fundamental_estimator.cpp"
-#include "moduls/models/homography_estimator.cpp"
-#include "moduls/models/motion_estimator.cpp"
+#include "helpers.h"
+#include "model.h"
+#include "line_estimator.cpp"
+#include "fundamental_estimator.cpp"
+#include "homography_estimator.cpp"
+#include "motion_estimator.cpp"
 
-#include "moduls/sampler/uniform_sampler.h"
-#include "moduls/sampler/napsac_sampler.h"
+#include "uniform_sampler.h"
+#include "napsac_sampler.h"
 
 #include <opencv2/features2d/features2d.hpp>
 #include <opencv2\xfeatures2d\nonfree.hpp>

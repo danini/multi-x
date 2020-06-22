@@ -35,7 +35,7 @@
 #include <algorithm>
 #include <opencv2\xfeatures2d\nonfree.hpp>
 #include <math.h>
-#include "moduls\models\model.h"
+#include "model.h"
 
 /*
 Generate random 2D lines and points

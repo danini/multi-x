@@ -103,11 +103,11 @@ void mean_shift_clustering<T>::cluster(cv::InputArray _data,
 	auto been_visited_flag = std::make_unique<int[]>(point_number);
 	std::vector<cv::Mat> cluster_votes;
 
-	concurrency::parallel_for(0, point_number, [&](int i)
+	for (size_t i = 0; i < point_number; ++i)
 	{
 		init_point_indices[i] = i;
 		been_visited_flag[i] = 0;
-	});
+	}
 
 	cv::Mat min_position, max_position;
 	get_min_max_position(data, min_position, max_position);
