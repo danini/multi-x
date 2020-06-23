@@ -112,121 +112,127 @@ int main(int argc, const char* argv[])
 {
 	srand(static_cast<unsigned int>(time(NULL)));
 
-	bool use_built_in_test;
-	size_t problem_idx;
-	float inlier_outlier_threshold;
-	float spatial_coherence_weight;
-	float mode_seeking_threshold;
-	float sphere_radius;
-	float label_cost;
-	int sampler_idx;
-	bool use_annotations;
-	std::string source_file;
-	std::string scene_name;
-	std::string video_location;
-	std::string image_location_1;
-	std::string image_location_2;
-	bool drawing_flag;
+	// Motion (0), two-view motion (1), homography (2)
+	const std::vector<size_t> experiments = {0, 1, 2};
 
-	use_built_in_test = true; 
-	use_annotations = true;
-	drawing_flag = true;
-	problem_idx = 2; // Motion (0), two-view motion (1), homography (2), 2d line (3; not implemented yet)
-	std::vector<std::string> built_in_scenes = get_built_in_scenes(problem_idx);
-
-	for each (std::string scene_name in built_in_scenes)
+	for (const size_t &experiment : experiments)
 	{
-		std::string problem_name;
-		switch (problem_idx)
+		bool use_built_in_test;
+		size_t problem_idx;
+		float inlier_outlier_threshold;
+		float spatial_coherence_weight;
+		float mode_seeking_threshold;
+		float sphere_radius;
+		float label_cost;
+		int sampler_idx;
+		bool use_annotations;
+		std::string source_file;
+		std::string scene_name;
+		std::string video_location;
+		std::string image_location_1;
+		std::string image_location_2;
+		bool drawing_flag;
+
+		use_built_in_test = true;
+		use_annotations = true;
+		drawing_flag = true;
+		problem_idx = experiment; // Motion (0), two-view motion (1), homography (2)
+		std::vector<std::string> built_in_scenes = get_built_in_scenes(problem_idx);
+
+		for each (std::string scene_name in built_in_scenes)
 		{
-		case 0:
-			problem_name = "motion";
-			printf("Fitting multiple motions to scene \"%s\".\n", scene_name.c_str());
-			break;
-		case 1:
-			problem_name = "fundamental_matrix";
-			printf("Fitting multiple fundamental matrices to scene \"%s\".\n", scene_name.c_str());
-			break;
-		case 2:
-			problem_name = "homography";
-			printf("Fitting multiple homographies to scene \"%s\".\n", scene_name.c_str());
-			break;
-		default:
-			break;
-		}
+			std::string problem_name;
+			switch (problem_idx)
+			{
+			case 0:
+				problem_name = "motion";
+				printf("Fitting multiple motions to scene \"%s\".\n", scene_name.c_str());
+				break;
+			case 1:
+				problem_name = "fundamental_matrix";
+				printf("Fitting multiple fundamental matrices to scene \"%s\".\n", scene_name.c_str());
+				break;
+			case 2:
+				problem_name = "homography";
+				printf("Fitting multiple homographies to scene \"%s\".\n", scene_name.c_str());
+				break;
+			default:
+				break;
+			}
 
-		get_default_parameterization(problem_idx,
-			inlier_outlier_threshold,
-			spatial_coherence_weight,
-			mode_seeking_threshold,
-			sphere_radius,
-			label_cost,
-			sampler_idx);
-
-		printf("The used parameters are:\n");
-		printf("\tInlier-outlier threshold = %.3f\n", inlier_outlier_threshold);
-		printf("\tSpatial coherence weight = %.3f\n", spatial_coherence_weight);
-		printf("\tHypersphere radius for the neighborhood calculation = %.3f\n", sphere_radius);
-		printf("\tLabel cost = %.3f\n", label_cost);
-		printf("\tMode-seeking threshold = %.3f\n", mode_seeking_threshold);
-		printf("\tSampler = %s\n", sampler_idx == 1 ? "uniform sampler" : "NAPSAC sampler");
-
-		source_file = "data/" + problem_name + "/" + scene_name + "/" + scene_name + ".txt";
-		video_location = "data/" + problem_name + "/" + scene_name + "/" + scene_name + ".avi";
-		image_location_1 = "data/" + problem_name + "/" + scene_name + "/" + scene_name + "1.png";
-		image_location_2 = "data/" + problem_name + "/" + scene_name + "/" + scene_name + "2.png";
-
-		switch (problem_idx)
-		{
-		case 0:
-			motion_fitting(source_file,
-				video_location,
-				scene_name,
-				use_annotations,
-				problem_idx,
+			get_default_parameterization(problem_idx,
 				inlier_outlier_threshold,
 				spatial_coherence_weight,
 				mode_seeking_threshold,
 				sphere_radius,
 				label_cost,
-				sampler_idx,
-				drawing_flag);
-			break;
-		case 1:
-			fundamental_matrix_fitting(source_file,
-				image_location_1,
-				image_location_2,
-				scene_name,
-				use_annotations,
-				problem_idx,
-				inlier_outlier_threshold,
-				spatial_coherence_weight,
-				mode_seeking_threshold,
-				sphere_radius,
-				label_cost,
-				sampler_idx,
-				drawing_flag);
-			break;
-		case 2:
-			homography_fitting(source_file,
-				image_location_1,
-				image_location_2,
-				scene_name,
-				use_annotations,
-				problem_idx,
-				inlier_outlier_threshold,
-				spatial_coherence_weight,
-				mode_seeking_threshold,
-				sphere_radius,
-				label_cost,
-				sampler_idx,
-				drawing_flag);
-			break;
-		case 3:
-			printf("2D line fitting is not implemented yet.\n");
-			break;
-		default:
-			break;
+				sampler_idx);
+
+			printf("The used parameters are:\n");
+			printf("\tInlier-outlier threshold = %.3f\n", inlier_outlier_threshold);
+			printf("\tSpatial coherence weight = %.3f\n", spatial_coherence_weight);
+			printf("\tHypersphere radius for the neighborhood calculation = %.3f\n", sphere_radius);
+			printf("\tLabel cost = %.3f\n", label_cost);
+			printf("\tMode-seeking threshold = %.3f\n", mode_seeking_threshold);
+			printf("\tSampler = %s\n", sampler_idx == 1 ? "uniform sampler" : "NAPSAC sampler");
+
+			source_file = "data/" + problem_name + "/" + scene_name + "/" + scene_name + ".txt";
+			video_location = "data/" + problem_name + "/" + scene_name + "/" + scene_name + ".avi";
+			image_location_1 = "data/" + problem_name + "/" + scene_name + "/" + scene_name + "1.png";
+			image_location_2 = "data/" + problem_name + "/" + scene_name + "/" + scene_name + "2.png";
+
+			switch (problem_idx)
+			{
+			case 0:
+				motion_fitting(source_file,
+					video_location,
+					scene_name,
+					use_annotations,
+					problem_idx,
+					inlier_outlier_threshold,
+					spatial_coherence_weight,
+					mode_seeking_threshold,
+					sphere_radius,
+					label_cost,
+					sampler_idx,
+					drawing_flag);
+				break;
+			case 1:
+				fundamental_matrix_fitting(source_file,
+					image_location_1,
+					image_location_2,
+					scene_name,
+					use_annotations,
+					problem_idx,
+					inlier_outlier_threshold,
+					spatial_coherence_weight,
+					mode_seeking_threshold,
+					sphere_radius,
+					label_cost,
+					sampler_idx,
+					drawing_flag);
+				break;
+			case 2:
+				homography_fitting(source_file,
+					image_location_1,
+					image_location_2,
+					scene_name,
+					use_annotations,
+					problem_idx,
+					inlier_outlier_threshold,
+					spatial_coherence_weight,
+					mode_seeking_threshold,
+					sphere_radius,
+					label_cost,
+					sampler_idx,
+					drawing_flag);
+				break;
+			case 3:
+				printf("2D line fitting is not implemented yet.\n");
+				break;
+			default:
+				break;
+			}
 		}
 	}
 
@@ -674,14 +680,15 @@ void motion_fitting(std::string _data_source,
 		if (video.isOpened())
 		{
 			const auto instance_number = method->get_instance_number() + 1;
-			std::unique_ptr<cv::Scalar[]> colors = std::make_unique<cv::Scalar[]>(instance_number);
+			std::vector<cv::Scalar> colors(instance_number);
 			cv::RNG rng(12345);
 			colors[0] = cv::Scalar(0, 0, 0);
-			for (auto color_idx = 0; color_idx < instance_number; ++color_idx)
+			for (auto color_idx = 0; color_idx < method->get_instance_number(); ++color_idx)
 				colors[color_idx + 1] = cv::Scalar(rng.uniform(0, 256), rng.uniform(0, 256), rng.uniform(0, 256));
 
 			cv::Mat frame;
 			int frame_idx = 0;
+			cv::namedWindow("Multi-motion frame", cv::WINDOW_AUTOSIZE);
 			while (1) {
 				// Capture frame-by-frame
 				video >> frame;
@@ -706,17 +713,18 @@ void motion_fitting(std::string _data_source,
 				++frame_idx;
 
 				// Display the resulting frame
-				imshow("Frame", frame);
+				imshow("Multi-motion frame", frame);
 
 				// Press  ESC on keyboard to exit
 				char c = (char)cv::waitKey(100);
 				if (c == 27)
 					break;
+				frame.release();
 			}
 
 			printf("Press a key to continue...\n");
 			cv::waitKey(0);
-			frame.release();
+			cv::destroyWindow("Multi-motion frame");
 		}
 		else
 			printf("Video file \"%s\" cannot be openned.\n", _source_video_location.c_str());
@@ -797,7 +805,7 @@ float compute_misclassification_error(std::vector<int> const &_labeling,
 
 		cluster_to_cluster[i] = best_cluster;
 		usability_mask[best_cluster] = true;
-		ground_truth_pairs[i] = best_cluster;
+		ground_truth_pairs[i - 1] = best_cluster;
 	}
 
 	for (auto j = 0; j < _labeling.size(); ++j)
